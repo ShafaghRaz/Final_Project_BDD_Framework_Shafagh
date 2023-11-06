@@ -2,6 +2,7 @@ package project.bdd.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -29,7 +30,9 @@ public class BaseSetup {
         String browserType = properties.getProperty("ui.browser.type");
 
         if (browserType.equalsIgnoreCase("chrome")) {
-            driver = new ChromeDriver();
+            ChromeOptions option = new ChromeOptions();
+            option.addArguments("--headless");
+            driver = new ChromeDriver(option);
         } else if (browserType.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();
         } else if (browserType.equalsIgnoreCase("safari")) {
